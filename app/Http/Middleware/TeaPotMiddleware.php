@@ -9,12 +9,10 @@ use Closure;
 class TeaPotMiddleware
 {
     /**
-     * @return mixed
+     * @return never
      */
     public function handle($request, Closure $next)
     {
         abort(418);
-
-        return $next($request);
     }
 }

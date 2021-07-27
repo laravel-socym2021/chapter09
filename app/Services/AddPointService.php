@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\EloquentCustomerPoint;
 use App\Models\EloquentCustomerPointEvent;
 use App\Models\PointEvent;
-use Illuminate\Database\Connectors\ConnectorInterface;
+use Illuminate\Database\ConnectionInterface;
 use Throwable;
 
 final class AddPointService
@@ -16,7 +16,7 @@ final class AddPointService
     private $eloquentCustomerPointEvent;
     /** @var EloquentCustomerPoint */
     private $eloquentCustomerPoint;
-    /** @var ConnectorInterface */
+    /** @var ConnectionInterface */
     private $db;
 
     /**

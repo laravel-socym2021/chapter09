@@ -24,6 +24,10 @@ test-php8:
 	docker-compose run --rm php8 ./vendor/bin/phpunit
 .PHONY: test-php8
 
+phpstan:
+	docker-compose run --rm phpstan analyse
+.PHONY: phpstan
+
 clean:
 	docker-compose down
 .PHONY: clean

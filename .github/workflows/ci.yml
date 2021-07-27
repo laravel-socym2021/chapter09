@@ -11,3 +11,5 @@ jobs:
       run: make
     - name: Run test on PHP 8
       run: make test-php8
+    - name: Run phpstan
+      run: make phpstan

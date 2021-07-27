@@ -37,3 +37,8 @@ services:
     <<: *db
     ports:
       - "23306:3306"
+  phpstan:
+    image: ghcr.io/phpstan/phpstan
+    volumes:
+      - .:/var/www/html:cached
+    working_dir: /var/www/html

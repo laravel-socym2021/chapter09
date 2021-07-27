@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -23,6 +24,7 @@ class AuthTest extends TestCase
                 'name' => 'Mike',
             ]
         );
+        assert($user instanceof Authenticatable);
 
         $response = $this->withoutMiddleware()
             ->actingAs($user)
@@ -46,6 +48,7 @@ class AuthTest extends TestCase
                 'name' => 'Mike',
             ]
         );
+        assert($user instanceof Authenticatable);
 
         $response = $this->actingAs($user)
             ->getJson('/api/user');
@@ -59,14 +62,14 @@ class AuthTest extends TestCase
      */
     public function sanctum_actingAs()
     {
-        Sanctum::actingAs(
-            User::factory()->create(
-                [
-                    'name' => 'Mike',
-                ]
-            ),
-            ['*']
+        $user = User::factory()->create(
+            [
+                'name' => 'Mike',
+            ]
         );
+        assert($user instanceof Authenticatable);
+
+        Sanctum::actingAs($user, ['*']);
 
         $response = $this->getJson('/api/sanctum-user');
 

@@ -67,7 +67,6 @@ class CalculatePointServiceTest extends TestCase
     {
         try {
             throw new \InvalidArgumentException('message', 200);
-            $this->fail();
         } catch (\Throwable $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
             $this->assertSame(200, $e->getCode());
